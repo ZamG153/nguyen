@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chọn Món Ăn</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .menu-item {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        .menu-item img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .menu-item h3 {
+            margin: 10px 0;
+        }
+
+        .menu-item p {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .quantity {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .quantity input {
+            width: 50px;
+            padding: 5px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .btn-select {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-select:hover {
+            background-color: #218838;
+        }
+
+        .confirm-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .confirm-section input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .btn-confirm {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn-confirm:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Bún Chả -->
+        <div class="menu-item">
+            <img src="https://www.thatlangon.com/wp-content/uploads/2020/09/bun-cha6.jpg" alt="Bún Chả">
+            <h3>Bún Chả</h3>
+            <p>Giá: 50,000 VNĐ</p>
+            <div class="quantity">
+                <label for="buncha-qty">Số lượng: </label>
+                <input type="number" id="buncha-qty" value="0" min="0">
+            </div>
+            <button class="btn-select" onclick="selectDish('Bún Chả', 50000, 'buncha-qty')">Chọn Món</button>
+        </div>
+
+        <!-- Phở -->
+        <div class="menu-item">
+            <img src="https://toplist.vn/images/800px/pho-ha-noi-xua-1102146.jpg" alt="Phở">
+            <h3>Phở</h3>
+            <p>Giá: 40,000 VNĐ</p>
+            <div class="quantity">
+                <label for="pho-qty">Số lượng: </label>
+                <input type="number" id="pho-qty" value="0" min="0">
+            </div>
+            <button class="btn-select" onclick="selectDish('Phở', 40000, 'pho-qty')">Chọn Món</button>
+        </div>
+
+        <!-- Bún Bò Huế -->
+        <div class="menu-item">
+            <img src="https://www.hungryhuy.com/wp-content/uploads/bun-bo-hue-bowl.jpg" alt="Bún Bò Huế">
+            <h3>Bún Bò Huế</h3>
+            <p>Giá: 60,000 VNĐ</p>
+            <div class="quantity">
+                <label for="bunbo-qty">Số lượng: </label>
+                <input type="number" id="bunbo-qty" value="0" min="0">
+            </div>
+            <button class="btn-select" onclick="selectDish('Bún Bò Huế', 60000, 'bunbo-qty')">Chọn Món</button>
+        </div>
+
+        <!-- Bánh Tôm -->
+        <div class="menu-item">
+            <img src="https://www.huongnghiepaau.com/wp-content/uploads/2019/10/banh-tom-ho-tay-hap-dan.jpg" alt="Bánh Tôm">
+            <h3>Bánh Tôm</h3>
+            <p>Giá: 70,000 VNĐ</p>
+            <div class="quantity">
+                <label for="banhtom-qty">Số lượng: </label>
+                <input type="number" id="banhtom-qty" value="0" min="0">
+            </div>
+            <button class="btn-select" onclick="selectDish('Bánh Tôm', 70000, 'banhtom-qty')">Chọn Món</button>
+        </div>
+
+        <!-- Cơm Tấm -->
+        <div class="menu-item">
+            <img src="https://hotel84.com/hotel84-images/news/photo/VSX1Q2A2T_com-tam-suon-cay-sa-bi-chuo.jpg" alt="Cơm Tấm">
+            <h3>Cơm Tấm</h3>
+            <p>Giá: 40,000 VNĐ</p>
+            <div class="quantity">
+                <label for="comtam-qty">Số lượng: </label>
+                <input type="number" id="comtam-qty" value="0" min="0">
+            </div>
+            <button class="btn-select" onclick="selectDish('Cơm Tấm', 40000, 'comtam-qty')">Chọn Món</button>
+        </div>
+    </div>
+
+    <!-- Xác nhận đơn hàng -->
+    <div class="confirm-section">
+        <input type="checkbox" id="confirm-checkbox">
+        <label for="confirm-checkbox">Tôi đã chọn món và đồng ý đặt hàng.</label>
+        <br>
+        <button class="btn-confirm" onclick="confirmOrder()" id="confirm-btn" disabled>Xác Nhận Đặt Hàng</button>
+    </div>
+
+    <script>
+        let order = [];
+
+        function selectDish(dish, price, qtyId) {
+            let quantity = document.getElementById(qtyId).value;
+            if (quantity > 0) {
+                order.push({ dish, price, quantity });
+                alert(dish + " đã được chọn. Số lượng: " + quantity);
+            } else {
+                alert("Vui lòng chọn số lượng món ăn.");
+            }
+        }
+
+        // Kiểm tra ô xác nhận và kích hoạt nút xác nhận
+        document.getElementById('confirm-checkbox').addEventListener('change', function() {
+            let confirmBtn = document.getElementById('confirm-btn');
+            if (this.checked) {
+                confirmBtn.disabled = false;
+            } else {
+                confirmBtn.disabled = true;
+            }
+        });
+
+        function confirmOrder() {
+            if (order.length > 0) {
+                let orderDetails = "Bạn đã chọn những món sau:\n";
+                order.forEach(item => {
+                    orderDetails += `${item.dish} - Số lượng: ${item.quantity} - Tổng giá: ${item.price * item.quantity} VNĐ\n`;
+                });
+                alert(orderDetails + "\nĐơn hàng của bạn đã được xác nhận.");
+            } else {
+                alert("Vui lòng chọn ít nhất một món ăn.");
+            }
+        }
+    </script>
+</body>
+</html>
